@@ -1,4 +1,4 @@
-package main.java;
+package trivia;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -17,7 +17,7 @@ public class LoginController {
     @FXML private PasswordField passwordField;
     @FXML private Label statusLabel;
 
-    private UserDAO userDAO = new UserDAO();
+    private final UserDAO userDAO = new UserDAO();
 
     /**
      * Handles the login button action by validating user credentials against the database.
