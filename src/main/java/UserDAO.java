@@ -21,6 +21,21 @@ public class UserDAO {
      * @return true if registration is successful; false if the username already exists or an error occurs.
      */
     public boolean registerUser(String username, String password, String role) {
+        /**
+         * Registers a new user with basic input validation.
+         * * @param username the username to register
+         * @param password the user's password
+         * @param role the assigned role
+         * @return true if registered successfully, false if input is blank or registration fails
+         */
+        public boolean registerUser(String username, String password, String role) {
+            // Safety checks to prevent blank data
+            if (username == null || username.isBlank() ||
+                    password == null || password.isBlank() ||
+                    role == null || role.isBlank()) {
+                return false;
+            }
+
         String sql = "INSERT INTO USERS(username, password, role) VALUES(?,?,?)";
         try (Connection conn = DatabaseManager.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
