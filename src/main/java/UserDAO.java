@@ -1,4 +1,3 @@
-
 package main.java;
 import java.sql.*;
 
@@ -21,6 +20,12 @@ public class UserDAO {
      * @return true if registration is successful; false if the username already exists or an error occurs.
      */
     public boolean registerUser(String username, String password, String role) {
+        if (username == null || username.isBlank() ||
+                password == null || password.isBlank() ||
+                role == null || role.isBlank()) {
+            return false;
+        }
+
         String sql = "INSERT INTO USERS(username, password, role) VALUES(?,?,?)";
         try (Connection conn = DatabaseManager.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {

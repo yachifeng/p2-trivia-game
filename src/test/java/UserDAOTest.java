@@ -1,3 +1,4 @@
+package main.java;
 import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -76,5 +77,25 @@ public class UserDAOTest {
         userDAO.registerUser("deleteMe", "123", "user");
         userDAO.deleteUser("deleteMe");
         assertFalse(userDAO.validateLogin("deleteMe", "123"), "User should not exist after deletion.");
+    }
+
+    /**
+     * Tests the input validation logic (Security improvement) to ensure
+     * that blank or null values are not allowed for user registration.
+     */
+    @Test
+    public void testInvalidRegistrationInputs() {
+        // Test null values
+        assertFalse(userDAO.registerUser(null, "pass", "user"), "Should fail for null username.");
+
+        // Test empty strings
+        assertFalse(userDAO.registerUser("", "pass", "user"), "Should fail for empty username.");
+
+        // Test blank strings (whitespace only)
+        assertFalse(userDAO.registerUser("   ", "pass", "user"), "Should fail for blank username.");
+
+        // Test null/empty password
+        assertFalse(userDAO.registerUser("validUser", null, "user"), "Should fail for null password.");
+        assertFalse(userDAO.registerUser("validUser", "", "user"), "Should fail for empty password.");
     }
 }
