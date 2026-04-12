@@ -39,19 +39,27 @@ public class DatabaseManager {
             // Create USERS table (R01 Requirement)
             stmt.execute("CREATE TABLE IF NOT EXISTS USERS (" +
                     "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                    "username TEXT UNIQUE, password TEXT, role TEXT)");
+                    "username TEXT UNIQUE NOT NULL, " +
+                    "password TEXT NOT NULL, " +
+                    "role TEXT NOT NULL)");
 
             // Create QUESTIONS table (R01 Requirement)
             stmt.execute("CREATE TABLE IF NOT EXISTS QUESTIONS (" +
                     "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                    "category_id INTEGER, question_text TEXT, " +
-                    "option_a TEXT, option_b TEXT, option_c TEXT, option_d TEXT, " +
-                    "correct_answer TEXT)");
+                    "category_id INTEGER NOT NULL, " +
+                    "question_text TEXT NOT NULL, " +
+                    "option_a TEXT NOT NULL, " +
+                    "option_b TEXT NOT NULL, " +
+                    "option_c TEXT NOT NULL, " +
+                    "option_d TEXT NOT NULL, " +
+                    "correct_answer TEXT NOT NULL)");
 
             // Create SCORES table (R01 Requirement)
             stmt.execute("CREATE TABLE IF NOT EXISTS SCORES (" +
                     "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                    "user_id INTEGER, score INTEGER, date_taken DATETIME, " +
+                    "user_id INTEGER NOT NULL, " +
+                    "score INTEGER NOT NULL, " +
+                    "date_taken DATETIME DEFAULT CURRENT_TIMESTAMP, " +
                     "FOREIGN KEY(user_id) REFERENCES USERS(id))");
 
             System.out.println("Database tables initialized successfully.");

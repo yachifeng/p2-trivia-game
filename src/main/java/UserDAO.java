@@ -9,17 +9,19 @@ import java.sql.*;
  * @version 21.0.10
  * @since 4/12/26
  */
-
 public class UserDAO {
+
     /**
      * 1. Create (Insert)
-     * Registers a new user by inserting their credentials and role into the database.
-     * * @param username The unique username for the new account.
+     * Registers a new user with basic input validation.
+     *
+     * @param username The unique username for the new account.
      * @param password The user's chosen password.
      * @param role The assigned role (e.g., 'admin' or 'user').
-     * @return true if registration is successful; false if the username already exists or an error occurs.
+     * @return true if registration is successful; false if input is blank or an error occurs.
      */
     public boolean registerUser(String username, String password, String role) {
+        // Safety checks to prevent blank data
         if (username == null || username.isBlank() ||
                 password == null || password.isBlank() ||
                 role == null || role.isBlank()) {
@@ -42,7 +44,8 @@ public class UserDAO {
     /**
      * 2. Read
      * Validates user credentials by checking if the username and password match a record in the database.
-     * * @param username The username entered by the user.
+     *
+     * @param username The username entered by the user.
      * @param password The password entered by the user.
      * @return true if a matching record is found; false otherwise.
      */
@@ -62,7 +65,8 @@ public class UserDAO {
     /**
      * 3. Update
      * Updates the password for a specific user in the database.
-     * * @param username The username of the account to be updated.
+     *
+     * @param username The username of the account to be updated.
      * @param newPassword The new password to be set for the user.
      */
     public void updatePassword(String username, String newPassword) {
@@ -80,7 +84,8 @@ public class UserDAO {
     /**
      * 4. Delete
      * Permanently removes a user record from the database based on their username.
-     * * @param username The username of the account to be deleted.
+     *
+     * @param username The username of the account to be deleted.
      */
     public void deleteUser(String username) {
         String sql = "DELETE FROM USERS WHERE username = ?";
