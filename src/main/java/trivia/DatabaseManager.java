@@ -1,4 +1,4 @@
-package main.java;
+package trivia;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
