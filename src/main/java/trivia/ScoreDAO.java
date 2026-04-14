@@ -4,6 +4,7 @@ import java.sql.*;
 import java.util.List;
 import java.util.ArrayList;
 
+
 /**
  * Provides Data Access Object (DAO) methods for managing quiz score history,
  * including inserting and retrieving user quiz results through the database.
@@ -12,7 +13,6 @@ import java.util.ArrayList;
  * @version 1.0
  * @since 4/12/26
  */
-
 
 public class ScoreDAO {
 
