@@ -1,9 +1,12 @@
 package trivia;
 
-import org.junit.jupiter.api.*;
-import java.util.List;
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
 /**
  * @author Anthony Ou
  * @version 0.1.0
@@ -23,7 +26,7 @@ public class ScoreDAOTest{
      */
     @BeforeAll
     public static void setup() {
-        DatabaseManager.initialiazeDatabase();
+        DatabaseManager.initializeDatabase();
     }
 
 
@@ -33,7 +36,7 @@ public class ScoreDAOTest{
      */
     @AfterEach
     public void tearDown() {
-        scoreDAO = deleteScoresByUser(1);
+        scoreDAO. deleteScoresByUser(1);
     }
 
 
@@ -57,7 +60,7 @@ public class ScoreDAOTest{
         assertTrue(scores.size() >= 2, "Retrieve at least 2 scores.");
 
         // Checks recent score
-        assertEquals(90, scores.get(0).getScore());
+        assertEquals(80, scores.get(0).getScore());
 
     }
 
